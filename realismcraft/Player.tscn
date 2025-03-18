@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cknr6ivgkdvco"]
+[gd_scene load_steps=11 format=3 uid="uid://cknr6ivgkdvco"]
 
 [ext_resource type="Script" path="res://PlayerMovement.gd" id="1_et5un"]
-[ext_resource type="Texture2D" uid="uid://plhfey61ku5i" path="res://pixilart-sprite.png" id="2_oivor"]
+[ext_resource type="Texture2D" uid="uid://plhfey61ku5i" path="res://Sprites/pixilart-sprite.png" id="2_oivor"]
+[ext_resource type="PackedScene" uid="uid://b6uxbbarvn3g2" path="res://Inventory.tscn" id="3_ahton"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ras12"]
 atlas = ExtResource("2_oivor")
@@ -82,3 +83,10 @@ animation = &"Down"
 shape = SubResource("RectangleShape2D_elnyy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Inventory" parent="." instance=ExtResource("3_ahton")]
+visible = false
+offset_left = -575.0
+offset_top = -326.0
+offset_right = -575.0
+offset_bottom = -326.0

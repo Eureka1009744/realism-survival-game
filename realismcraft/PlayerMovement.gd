@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-
+var inventoryOpen = false
 const speed = 300.0
 @onready var playerSprite = $AnimatedSprite2D
+@onready var inventory = $Inventory
 
 func _physics_process(delta):
 
@@ -24,5 +25,12 @@ func _physics_process(delta):
 		playerSprite.play("Up")
 	else:
 		playerSprite.play("Idle")
+	if Input.is_action_just_pressed("E"):
+		if inventoryOpen == true:
+			inventory.visible = false
+			inventoryOpen = false
+		elif inventoryOpen == false:
+			inventory.visible = true
+			inventoryOpen = true
 
 	move_and_slide()

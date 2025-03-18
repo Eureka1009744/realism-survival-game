@@ -1,4 +1,5 @@
 extends Area2D
+var object = "stone"
 var mouseInObject = false
 @onready var player = $"../Player"
 func _physics_process(delta):
@@ -8,7 +9,7 @@ func _physics_process(delta):
 			$PlayerSprite.material.set_shader_parameter("line_thickness",1)
 		if Input.is_action_just_pressed("Right Mouse"):
 			if disToPlayer < 120:
-				print_debug("Stone Collected!")
+				player.get_child(3).recieveItem(object)
 				self.queue_free()
 	else:
 		$PlayerSprite.material.set_shader_parameter("line_thickness",0)

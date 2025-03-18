@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhuhr8icedu70"]
 
 [ext_resource type="Script" path="res://exampleGroundItemScript.gd" id="1_6npms"]
-[ext_resource type="Texture2D" uid="uid://cpjnnoyc241yr" path="res://pixil-frame-0.png" id="1_c81ln"]
+[ext_resource type="Texture2D" uid="uid://cpjnnoyc241yr" path="res://Sprites/Ground Items/stoneGround.png" id="1_c81ln"]
 [ext_resource type="Shader" path="res://ItemShader.gdshader" id="2_4bov0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hwkni"]

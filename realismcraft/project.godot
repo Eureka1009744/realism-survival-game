@@ -14,6 +14,11 @@ config/name="Realismcraft"
 run/main_scene="res://Main Testing.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="viewport"
+
 [input]
 
 E={
