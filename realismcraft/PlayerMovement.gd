@@ -32,5 +32,6 @@ func _physics_process(delta):
 		elif inventoryOpen == false:
 			inventory.visible = true
 			inventoryOpen = true
-
+	if Input.is_action_just_pressed("Q"):
+		inventory.countItems()
 	move_and_slide()

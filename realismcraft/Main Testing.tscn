@@ -1,11 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnk3ovsw3xtwc"]
+[gd_scene load_steps=4 format=3 uid="uid://cnk3ovsw3xtwc"]
 
 [ext_resource type="PackedScene" uid="uid://cknr6ivgkdvco" path="res://Player.tscn" id="1_ft6di"]
-[ext_resource type="PackedScene" uid="uid://dhuhr8icedu70" path="res://Example Ground Item.tscn" id="3_ff2i1"]
+[ext_resource type="PackedScene" uid="uid://7b1wn0rucfn4" path="res://Ground Objects/Stick/Stick Ground.tscn" id="2_feiim"]
+[ext_resource type="PackedScene" uid="uid://3cnshciatp8q" path="res://Ground Objects/Stone/Stone Ground.tscn" id="3_3pcad"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ft6di")]
 
-[node name="Example Ground Item" parent="." instance=ExtResource("3_ff2i1")]
-position = Vector2(170, 49)
+[node name="Stick Ground Item" parent="." instance=ExtResource("2_feiim")]
+position = Vector2(-148, 13)
+
+[node name="Stick Ground Item2" parent="." instance=ExtResource("2_feiim")]
+position = Vector2(31, 118)
+
+[node name="Stick Ground Item3" parent="." instance=ExtResource("2_feiim")]
+position = Vector2(48, -105)
+
+[node name="Stone Ground Item" parent="." instance=ExtResource("3_3pcad")]
+position = Vector2(-116, 111)
+
+[node name="Stone Ground Item2" parent="." instance=ExtResource("3_3pcad")]
+position = Vector2(106, 37)
+
+[node name="Stone Ground Item3" parent="." instance=ExtResource("3_3pcad")]
+position = Vector2(-63, -69)

@@ -25,7 +25,7 @@ func _on_mouse_exited():
 	mouseIn = false
 	
 func addItem(itemToAdd):
-	if itemToAdd == currentItem:
+	if currentItem == itemToAdd:
 		currentItemCount += 1
 		$Amount.text = str(currentItemCount)
 	elif currentItem == null:
@@ -34,3 +34,8 @@ func addItem(itemToAdd):
 		currentItem = itemToAdd
 		$Amount.text = str(currentItemCount)
 		$Name.text = currentItem
+	else:
+		return false
+	return true
+func checkItem():
+	return [currentItem,currentItemCount]
