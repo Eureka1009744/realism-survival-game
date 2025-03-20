@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://fmymhj2toeha"]
+
+[ext_resource type="Script" path="res://Inventory/inventory_slot.gd" id="1_plsld"]
+[ext_resource type="Texture2D" uid="uid://cvxpox0t3rdli" path="res://Sprites/Inventory/inventory_slot.png" id="2_e3m5b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4bu7"]
+size = Vector2(30, 30)
+
+[sub_resource type="LabelSettings" id="LabelSettings_38grp"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_w1qtt"]
+font_size = 33
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_plsld")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_e3m5b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g4bu7")
+
+[node name="CurrentItem" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="Name" type="Label" parent="."]
+offset_left = -9.0
+offset_top = 8.0
+offset_right = 77.0
+offset_bottom = 42.0
+scale = Vector2(0.231729, 0.220187)
+label_settings = SubResource("LabelSettings_38grp")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Amount" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -14.0
+offset_right = 118.0
+offset_bottom = 9.0
+scale = Vector2(0.148425, 0.132835)
+label_settings = SubResource("LabelSettings_w1qtt")
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
