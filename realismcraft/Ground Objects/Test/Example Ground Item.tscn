@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhuhr8icedu70"]
+
+[ext_resource type="Script" path="res://Ground Objects/Test/exampleGroundItemScript.gd" id="1_6npms"]
+[ext_resource type="Texture2D" uid="uid://cpjnnoyc241yr" path="res://Sprites/Ground Items/stoneGround.png" id="1_c81ln"]
+
+[sub_resource type="Shader" id="Shader_wk8ek"]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+	}
+	outline = min(outline, 1.0);
+	
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, line_color, outline - color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwkni"]
+shader = SubResource("Shader_wk8ek")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pxbsp"]
+radius = 12.7232
+height = 31.1782
+
+[node name="Example Ground Item" type="Area2D"]
+script = ExtResource("1_6npms")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+material = SubResource("ShaderMaterial_hwkni")
+texture = ExtResource("1_c81ln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, 2)
+rotation = 0.812622
+shape = SubResource("CapsuleShape2D_pxbsp")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

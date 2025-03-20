@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://cknr6ivgkdvco"]
+
+[ext_resource type="Script" path="res://Player/PlayerScript.gd" id="1_et5un"]
+[ext_resource type="Texture2D" uid="uid://plhfey61ku5i" path="res://Sprites/pixilart-sprite.png" id="2_oivor"]
+[ext_resource type="PackedScene" uid="uid://b6uxbbarvn3g2" path="res://Inventory/Inventory.tscn" id="3_ahton"]
+[ext_resource type="PackedScene" uid="uid://bg8g42s3qew2p" path="res://itemOnMouse.tscn" id="4_auxq7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ras12"]
+atlas = ExtResource("2_oivor")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rru7"]
+atlas = ExtResource("2_oivor")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxkpv"]
+atlas = ExtResource("2_oivor")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vusmd"]
+atlas = ExtResource("2_oivor")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gatxj"]
+atlas = ExtResource("2_oivor")
+region = Rect2(256, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ik3vm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ras12")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rru7")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxkpv")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vusmd")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gatxj")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elnyy"]
+size = Vector2(32, 64)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+script = ExtResource("1_et5un")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ik3vm")
+animation = &"Down"
+
+[node name="Collision Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_elnyy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Inventory" parent="." instance=ExtResource("3_ahton")]
+visible = false
+offset_left = -477.0
+offset_top = -267.0
+offset_right = -477.0
+offset_bottom = -267.0
+scale = Vector2(0.3, 0.3)
+
+[node name="ItemOnMouse" parent="." instance=ExtResource("4_auxq7")]
