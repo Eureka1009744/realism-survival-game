@@ -7,6 +7,9 @@ extends Area2D
 var mouseIn
 var currentItem
 var currentItemCount
+var rightClickRecipes = {
+	"sharp flint":["stone","flint"]
+}
 @onready var itemOnMouse = get_parent().get_parent().get_child(4)
 
 # Called when the node enters the scene tree for the first time.
@@ -21,29 +24,37 @@ func _physics_process(delta):
 		if currentItemCount == null:
 			currentItemCount = 1
 			currentItem = itemToAdd
-			itemSprite.texture = load(str("res://Sprites/Items/",currentItem,".png"))
-			$Amount.text = str(currentItemCount)
-			$Name.text = currentItem
+			update()
 			itemOnMouse.clearItem()
 		else:
 			if currentItem == itemToAdd:
 				currentItemCount += 1
-				$Amount.text = str(currentItemCount)
+				update()
 				itemOnMouse.clearItem()
 			else:
 				pass
 	elif Input.is_action_just_pressed("Left Mouse") and mouseIn == true and itemOnMouse.getItemOnMouse() == null and currentItem != null:
 		itemOnMouse.itemOnMouse(currentItem)
 		currentItemCount -= 1
+		update()
+	if Input.is_action_just_pressed("Right Mouse") and mouseIn == true:
+		for recipe in rightClickRecipes.keys():
+			if itemOnMouse.getItemOnMouse() == rightClickRecipes[recipe][0] and currentItem == rightClickRecipes[recipe][1]:
+				currentItemCount -= 1
+				update()
+				get_parent().recieveItem(recipe)
+
+func update():
+	if currentItemCount == 0:
+		currentItemCount = null
+		currentItem = null
+		$Amount.text = ""
+		$Name.text = ""
+		itemSprite.texture = null
+	else:
 		$Amount.text = str(currentItemCount)
-		if currentItemCount == 0:
-			currentItemCount = null
-			currentItem = null
-			$Amount.text = ""
-			$Name.text = ""
-			itemSprite.texture = null
-
-
+		$Name.text = currentItem
+		itemSprite.texture = load(str("res://Sprites/Items/",currentItem,".png"))
 func _on_mouse_entered():
 	mouseIn = true
 
